@@ -20,19 +20,6 @@ class Participant:
         return self.__str__()
 
 
-# Pascale                                                           Books - Livres
-# Jonathan      Decoration - Objets de décoration, Electronics gadgets - Gadgets électroniques, Clothing accessories - Accessoires de vêtements Covfefe
-# Charlène      Books - Livres, Cosmetics - Produits cosmétiques, Clothing accessories - Accessoires de vêtements
-# Xiaoji        Decoration - Objets de décoration
-# Joan          Books - Livres, Cosmetics - Produits cosmétiques, Clothing accessories - Accessoires de vêtements
-# Vinciane      Books - Livres, Cosmetics - Produits cosmétiques, Beauty accessories - Accessoires de beauté, Clothing accessories - Accessoires de vêtements
-# Vinciane      Books - Livres, Cosmetics - Produits cosmétiques, Beauty accessories - Accessoires de beauté, Clothing accessories - Accessoires de vêtements
-# Christian     Books - Livres, Clothing accessories - Accessoires de vêtements, Food & Drink - A manger et à boire
-# Jean-Luc      Food & Drink - A manger et à boire
-# Bastien       Books - Livres, Electronics gadgets - Gadgets électroniques
-# maxime        jeu steam peut être, id : troollcleans
-
-
 def create_participants_list(people):
     return [
         Participant(
