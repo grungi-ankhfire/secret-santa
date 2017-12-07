@@ -12,6 +12,7 @@ class Participant:
         self.name = name
         self.group = group
         self.email = email
+        self.lang = lang
 
     def __str__(self):
         return self.name
@@ -45,6 +46,12 @@ def graph_from(participants):
     return g
 
 
+def render_email(env, giver, giftee):
+    lang = giver.lang.lower()
+    template = env.get_template(lang + '/email.html')
+    print(template.render(giver=giver, giftee=giftee))
+
+
 @click.command()
 @click.argument('config_file', type=click.File('rb'))
 def secret_santa(config_file):
@@ -70,10 +77,7 @@ def secret_santa(config_file):
     order = G.hamiltonian()
     assignments = zip(order, order[1:] + [order[0]])
     for assignment in assignments:
-        print(assignment[0].item.name + " -> " + assignment[1].item.name)
-
-    template = env.get_template('email_en.html')
-    print(template.render())
+        render_email(env, giver=assignment[0].item, giftee=assignment[1].item)
 
 
 if __name__ == '__main__':
