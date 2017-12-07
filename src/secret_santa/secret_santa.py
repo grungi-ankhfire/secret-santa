@@ -8,11 +8,12 @@ from jinja2 import (Environment, PackageLoader, FileSystemLoader,
 
 
 class Participant:
-    def __init__(self, name, group, email, lang='FR'):
+    def __init__(self, name, group, email, gifts, lang='FR'):
         self.name = name
         self.group = group
         self.email = email
         self.lang = lang
+        self.gifts = gifts
 
     def __str__(self):
         return self.name
@@ -24,8 +25,11 @@ class Participant:
 def create_participants_list(people):
     return [
         Participant(
-            name=p['name'], group=p['group'], email=p['email'], lang=p['lang'])
-        for p in people
+            name=p['name'],
+            group=p['group'],
+            email=p['email'],
+            gifts=p.get('gifts'),
+            lang=p['lang']) for p in people
     ]
 
 

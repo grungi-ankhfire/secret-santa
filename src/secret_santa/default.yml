@@ -5,6 +5,8 @@ people:
       group: 1
       lang: FR
       email: test1@mail
+      gifts:
+        - books
     - name: Jill
       group: 1
       lang: FR

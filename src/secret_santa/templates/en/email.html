@@ -2,8 +2,16 @@ Dear {{ giver.name }},
 
 Thanks for taking part in our Secret Santa!
 
-The lucky one that will receive a gift from you is : {{ giftee.name }}.
+The lucky one that will receive a gift from you is: {{ giftee.name }}.
 
+{% if giftee.gifts %}
+To help you choose, here is what {{ giftee.name }} indicated they would love to get:
+<ul>
+{% for category in giftee.gifts %}
+	{% include "en/%s.html" % category %}
+{% endfor %}
+</ul>
+{% endif %}
 
 Yours truly,
 -The Secret Santa Organizers
