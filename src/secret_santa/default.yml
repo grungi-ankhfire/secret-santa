@@ -1,5 +1,58 @@
+# Dummy config file, create a new one for actually running your Secret Santa
+email_enabled: False
 people:
-    - Joe
-    - Jane
-    - John
-    - Jill
+    - name: Joe
+      group: 1
+      lang: FR
+      email: test1@mail
+    - name: Jill
+      group: 1
+      lang: FR
+      email: test2@mail
+    - name: Jane
+      group: 2
+      lang: EN
+      email: test3@mail
+    - name: John
+      group: 2
+      lang: EN
+      email: test4@mail
+smtp_server: 127.0.0.1
+smtp_port: 587
+email_username: test@mail.com
+email_password: mypassword
+gift_categories:
+    - name:
+        FR: Livres
+        EN: Books
+      id: 1
+    - name:
+        FR: Produits cosmétiques
+        EN: Cosmetics
+      id: 2
+    - name:
+        FR: Objets de décoration
+        EN: Decoration items
+      id: 3
+    - name:
+        FR: Accessoires et vêtements
+        EN: Accessories and clothing
+      id: 4
+    - name:
+        FR: Boissons et nourriture
+        EN: Food and drinks
+      id: 5
+    - name:
+        FR: Accessoires beauté
+        EN: Beauty accessories
+      id: 6
+    - name:
+        FR: Gadgets électroniques
+        EN: Electronic gadgets
+      id: 7
+    - name:
+        FR: Jeux vidéo
+        EN: Video games
+      id: 8
+# To override the Jinja2 template dir :
+# template_dir: path/to/templates
