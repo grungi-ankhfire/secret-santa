@@ -3,7 +3,7 @@ import click
 import yaml
 from graph import Graph
 from random import shuffle
-from jinja2 import (Template, Environment, PackageLoader, FileSystemLoader,
+from jinja2 import (Environment, PackageLoader, FileSystemLoader,
                     select_autoescape)
 
 
