@@ -1,11 +1,11 @@
-Chèr·e {{ giver.name }},
-
-Merci de participer à notre Secret Santa!
-
-La personne chanceuse qui recevra un cadeau de ta part est : {{ giftee.name }}.
-
+Chèr·e {{ giver.name }},<br>
+<br>
+Merci de participer à notre Secret Santa!<br>
+<br>
+La personne chanceuse qui recevra un cadeau de ta part est : {{ giftee.name }}.<br>
+<br>
 {% if giftee.gifts %}
-Pour t'aider à choisir, voici ce que {{ giftee.name }} a choisi comme catégories qui lui feraient plaisir:
+Pour t'aider à choisir, voici ce que {{ giftee.name }} a choisi comme catégories qui lui feraient plaisir:<br>
 <ul>
 {% for category in giftee.gifts %}
 	{% include "fr/%s.html" % category %}
@@ -13,5 +13,5 @@ Pour t'aider à choisir, voici ce que {{ giftee.name }} a choisi comme catégori
 </ul>
 {% endif %}
 
-A bientôt,
+A bientôt,<br>
 -Les Organisateurs

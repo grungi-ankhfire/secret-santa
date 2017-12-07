@@ -23,6 +23,7 @@ smtp_server: 127.0.0.1
 smtp_port: 587
 email_username: test@mail.com
 email_password: mypassword
+email_from: test@mail.com
 gift_categories:
     - name:
         FR: Livres

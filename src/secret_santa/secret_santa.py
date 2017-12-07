@@ -6,6 +6,10 @@ from random import shuffle
 from jinja2 import (Environment, PackageLoader, FileSystemLoader,
                     select_autoescape)
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 
 class Participant:
     def __init__(self, name, group, email, gifts, lang='FR'):
@@ -50,10 +54,22 @@ def graph_from(participants):
     return g
 
 
-def render_email(env, giver, giftee):
+def render_email(env, server, config, giver, giftee):
     lang = giver.lang.lower()
     template = env.get_template(lang + '/email.html')
-    print(template.render(giver=giver, giftee=giftee))
+    html = template.render(giver=giver, giftee=giftee)
+
+    from_addr = config['email_from']
+    to_addr = giver.email
+
+    msg = MIMEMultipart()
+    msg.attach(MIMEText(html, 'html'))
+    msg['Subject'] = "Secret Santa!"
+    msg['From'] = from_addr
+    msg['To'] = to_addr
+
+    text = msg.as_string()
+    server.sendmail(from_addr, to_addr, text)
 
 
 @click.command()
@@ -75,13 +91,25 @@ def secret_santa(config_file):
     env = Environment(
         loader=loader, autoescape=select_autoescape(['html', 'xml']))
 
+    mail_server = smtplib.SMTP(config['smtp_server'], config['smtp_port'])
+    mail_server.set_debuglevel(True)
+    mail_server.ehlo()
+    mail_server.starttls()
+    mail_server.ehlo()
+    mail_server.login(config['email_username'], config['email_password'])
+
     participants = create_participants_list(config['people'])
     shuffle(participants)
     G = graph_from(participants)
     order = G.hamiltonian()
     assignments = zip(order, order[1:] + [order[0]])
     for assignment in assignments:
-        render_email(env, giver=assignment[0].item, giftee=assignment[1].item)
+        render_email(
+            env,
+            mail_server,
+            config,
+            giver=assignment[0].item,
+            giftee=assignment[1].item)
 
 
 if __name__ == '__main__':
